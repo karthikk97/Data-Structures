@@ -1,30 +1,32 @@
+package Stack;
+import DynamicArray.DynamicArray;
+
 public class Stack {
-    private int stackSize;
     private DynamicArray stack;
 
-    Stack(int size){
-        stackSize = size;
+    public Stack(){
         stack = new DynamicArray();
     }
 
     public void push(int element){
-
+        stack.add(element);
     }
 
     public int pop(){
-        // remove the top element of stack and return it.
+        int size = stack.getSize() - 1;
+        int element = stack.get(size);
+        stack.removeLast();
+        return element;
     }
 
     public int size(){
-        // return stack size
+       return stack.getSize();
     }
 
     public int peek(){
-        // return top element 
-    }
-
-    public boolean isEmpty(){
-
+        int size = stack.getSize();
+        int element = stack.get(size - 1);
+        return element;
     }
 
 }
