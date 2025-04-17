@@ -13,18 +13,24 @@ public class DynamicArray {
     }
     public void add(int newElement){
          if (size == dArray.length){
-            dArray = resize();
+             resize();
         }
         dArray[size] = newElement;
         size++;
     }
-    private int[] resize(){
+    public void set(int idx, int value){
+        if (idx >= dArray.length){
+            throw new IndexOutOfBoundsException("Index out of bounds for size "+dArray.length);
+        }
+        dArray[idx] = value;
+    }
+    private void resize(){
          int capacity =  2 * dArray.length; // dArray.length + 100;
          int[] tempArray = new int[capacity];
          for (int idx = 0; idx < size; idx++){
             tempArray[idx] = dArray[idx];
          }
-         return tempArray;
+         dArray = tempArray;
     }
     public int getSize(){
         return size;
