@@ -31,19 +31,17 @@ class TestCases {
     } 
     public void stackTest(){
         Stack stack = new Stack();
-    
-        int n = (int) Math.pow(10, 7);
-        
+            
         long startTime = System.currentTimeMillis(); 
 
         stack.push(2);
         stack.push(23);
         stack.push(45);
-        System.out.println(""+stack.size());
-        System.out.println(""+stack.pop());
-        System.out.println(""+stack.pop());
-        System.out.println(""+stack.size());
-        System.out.println(""+stack.peek());
+        System.out.println(stack.size());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.size());
+        System.out.println(stack.peek());
 
         long endTime = System.currentTimeMillis();  
 
