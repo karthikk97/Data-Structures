@@ -25,7 +25,7 @@ public class DynamicArray {
         dArray[idx] = value;
     }
     private void resize(){
-         int capacity =  2 * dArray.length; // dArray.length + 100;
+         int capacity =  2 * dArray.length;
          int[] tempArray = new int[capacity];
          for (int idx = 0; idx < size; idx++){
             tempArray[idx] = dArray[idx];
