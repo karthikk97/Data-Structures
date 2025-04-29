@@ -1,5 +1,5 @@
 import DynamicArray.DynamicArray;
-import Stack.Stack;
+import DynamicStack.DynamicStack;
 
 public class DataStructures {
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ class TestCases {
         System.out.println("Time taken: " + (endTime - startTime) + " ms");
     } 
     public void stackTest(){
-        Stack stack = new Stack();
+        DynamicStack stack = new DynamicStack();
             
         long startTime = System.currentTimeMillis(); 
 

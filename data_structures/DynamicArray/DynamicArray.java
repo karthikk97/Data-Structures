@@ -38,7 +38,7 @@ public class DynamicArray {
         return size;
     }
     public void removeLast(){
-        dArray[size] = -1;
+        dArray[size - 1] = -1;
         size--;
     }
 }
