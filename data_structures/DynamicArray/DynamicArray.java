@@ -45,9 +45,8 @@ public class DynamicArray {
 
 class DynamicArrayTester {
 
-    private boolean runBasicTestCases(){
+    private void runBasicTestCases(){
         DynamicArray dArr = new DynamicArray();
-        boolean isValid = true;
         List<Integer> testList = new ArrayList<>();
 
         dArr.add(50);
@@ -56,22 +55,24 @@ class DynamicArrayTester {
         testList.add(25);
         dArr.add(15);
         testList.add(15);
-        isValid = verifyEachElementInLists(dArr,testList);
-        if (!isValid) return isValid;
-        
+        try {
+            verifyEachElementInLists(dArr, testList);
+        } catch(Exception err){
+            System.out.println("Basic test cases error thrown : "+err);
+        }        
         dArr.set(0,75);
         testList.set(0,75);
         dArr.set(1,50);
         testList.set(1,50);
-        isValid = verifyEachElementInLists(dArr,testList);
-        if (!isValid) return isValid;
-      
-        return isValid;
+        try {
+            verifyEachElementInLists(dArr, testList);
+        } catch(Exception err){
+            System.out.println("Basic test cases error thrown : "+err);
+        }      
     }   
 
     
-    private boolean runRobustTestCases(){
-        boolean isValid = true;
+    private void runRobustTestCases(){
         DynamicArray dArr = new DynamicArray();
         List<Integer> list = new ArrayList<>();
         int n = (int) Math.pow(10, 7);
@@ -84,12 +85,14 @@ class DynamicArrayTester {
             }
         }
 
-        isValid = verifyEachElementInLists(dArr,list);
-        return isValid;
+        try {
+            verifyEachElementInLists(dArr, list);
+        } catch(Exception err){
+            System.out.println("Robust test cases error thrown : "+err);
+        }
     }
 
-    private boolean runInterLeaveTestCases() {
-        boolean isValid = true;
+    private void runInterLeaveTestCases() {
         DynamicArray dArr = new DynamicArray();
         List<Integer> list = new ArrayList<>();
         String[] operations = new String[]{"add", "set"};
@@ -113,44 +116,43 @@ class DynamicArrayTester {
             }
         }
         
-        isValid = verifyEachElementInLists(dArr, list);
-        return isValid;
+        try {
+            verifyEachElementInLists(dArr, list);
+        } catch(Exception err){
+            System.out.println("Interleave test cases error thrown : "+err);
+        }
+    
     }
     
 
-    private boolean verifyEachElementInLists(DynamicArray arr, List<Integer> list){
-        if (arr.getSize() != list.size()) return false;
+    private void verifyEachElementInLists(DynamicArray arr, List<Integer> list) throws Exception{
+        if (arr.getSize() != list.size()) throw new Exception("Size mismatch during comparision between List and DynamicArray");
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) != arr.get(i)){
-                return false;
+                throw new Exception("Element mismatch during comparision between List and DynamicArray");
             }
         }
-        return true;
     }
     
-    public static void main (String args[]){
-        boolean isTestSuccess = true;
-        DynamicArrayTester dArrayTest = new DynamicArrayTester();
-
-
+    private void runTests(){
         long startTime = System.currentTimeMillis(); 
-        isTestSuccess = dArrayTest.runBasicTestCases();
+        runBasicTestCases();
         long endTime = System.currentTimeMillis();  
         System.out.println("Basic Test Case (Time taken) => " + (endTime - startTime) + " ms");
-        System.out.println("Basic Test Case (Result) - Is Success ? => "+isTestSuccess);
 
         startTime = System.currentTimeMillis(); 
-        isTestSuccess = dArrayTest.runRobustTestCases();
+        runRobustTestCases();
         endTime = System.currentTimeMillis();  
         System.out.println("Robust Test Case (Time taken) => " + (endTime - startTime) + " ms");
-        System.out.println("Robust Test Case (Result) - Is Success ? => "+isTestSuccess);
 
         startTime = System.currentTimeMillis(); 
-        isTestSuccess = dArrayTest.runInterLeaveTestCases();
+        runInterLeaveTestCases();
         endTime = System.currentTimeMillis();  
         System.out.println("Run Inter Leave Test Cases (Time taken) => " + (endTime - startTime) + " ms");
-        System.out.println("Run Inter Leave Test Cases (Result) - Is Success ? => "+isTestSuccess);
+    }
 
-
+    public static void main (String args[]){
+        DynamicArrayTester dArrayTest = new DynamicArrayTester();
+        dArrayTest.runTests();
     }
 }
